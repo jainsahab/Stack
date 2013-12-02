@@ -4,15 +4,15 @@
 Stack* create(int ElementSize, int Size){
 	Stack* stack;
 	stack=malloc(sizeof(Stack)*1);
-	stack->elementSize=ElementSize;
-	stack->size=Size;
-	stack->top=-1;
-	stack->elements=calloc(stack->size,stack->elementSize);
+	stack->stackinfo.elementSize=ElementSize;
+	stack->stackinfo.size=Size;
+	stack->stackinfo.top=-1;
+	stack->elements=calloc(stack->stackinfo.size,stack->stackinfo.elementSize);
 	return stack;
 }
 
 boolean IsStackFull(Stack *st){
-	if((st->top+1) >= st->size)
+	if((st->stackinfo.top+1) >= st->stackinfo.size)
 		return true;
 	else
 		return false;
@@ -22,17 +22,21 @@ boolean push(Stack* stack,void* elementToPush){
 	void* address;
 	if(IsStackFull(stack))
 		return false;
-	address=stack->elements+(++(stack->top)*stack->elementSize);
-	memcpy(address, elementToPush, stack->elementSize);
+	address=stack->elements+(++(stack->stackinfo.top)*stack->stackinfo.elementSize);
+	memcpy(address, elementToPush, stack->stackinfo.elementSize);
 	return true;
 }
 
 boolean IsEmpty(Stack* stack){
-	return stack->top==-1;
+        return stack->stackinfo.top==-1;
 }
 
 void* pop(Stack* stack){
 	if(IsEmpty(stack))
 		return false;
-	return stack->elements+((stack->top--)*stack->elementSize);
+	return stack->elements+((stack->stackinfo.top--)*stack->stackinfo.elementSize);
+}
+
+void* top(Stack* stack){
+	return stack->elements+(stack->stackinfo.top*stack->stackinfo.elementSize);
 }

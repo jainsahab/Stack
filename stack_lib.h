@@ -1,9 +1,11 @@
 typedef struct 
 {
 	void *elements;
-	int top;
-	int elementSize;
-	int size;
+	struct StackInfo{
+		int top;
+		int elementSize;
+		int size;
+	} stackinfo;
 }Stack;
 typedef char String[256];
 typedef int boolean;
@@ -12,3 +14,4 @@ typedef int boolean;
 Stack* create(int ElementSize, int Size);
 boolean push(Stack* stack,void* InsertElement);
 void* pop(Stack *stack);
+void* top(Stack* stack);
