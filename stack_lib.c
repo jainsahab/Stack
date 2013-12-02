@@ -1,14 +1,15 @@
 #include "stack_lib.h"
 #include <stdlib.h>
 #include <string.h>
-Stack* create(int ElementSize, int Size){
+
+Stack* create(int ElementSize, int length){
 	Stack* stack;
-	stack=malloc(sizeof(Stack)*1);
+	stack=(Stack*)malloc(sizeof(Stack));
+	stack->elements = calloc(ElementSize,length);
 	stack->elementSize=ElementSize;
-	stack->size=Size;
+	stack->size=length;
 	stack->top=-1;
-	stack->elements=calloc(stack->size,stack->elementSize);
-	return stack;
+	return stack;	
 }
 
 boolean IsStackFull(Stack *st){
@@ -32,7 +33,7 @@ boolean IsEmpty(Stack* stack){
 }
 
 void* pop(Stack* stack){
-	if(IsEmpty(stack))
+	if(IsEmpty(stack))	
 		return false;
 	return stack->elements+((stack->top--)*stack->elementSize);
 }

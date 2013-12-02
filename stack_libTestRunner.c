@@ -119,6 +119,11 @@ int main(){
 		test_to_pop_an_element_from_an_String_array();
 	tearDown();
 	testEnded();
+	testStarted("test_to_pop_an_element_from_double_array");
+	setup();
+		test_to_pop_an_element_from_double_array();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

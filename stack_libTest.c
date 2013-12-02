@@ -175,3 +175,14 @@ void test_to_pop_an_element_from_an_String_array(){
 	free(stack);
 }
 
+void test_to_pop_an_element_from_double_array(){
+	double _4_nums[4] = {12.0,14.0,45.0,12.0};
+    double result;
+    Stack* stack = create(sizeof(double),4);
+    memcpy(stack->elements,_4_nums,4*sizeof(double));
+    stack->top = 3;
+    result = *(double*)(pop(stack));
+    ASSERT(12.0==result);
+    ASSERT(2==stack->top);
+}
+
